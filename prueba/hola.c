@@ -2,7 +2,7 @@
 
 int main() {
   printf("¡Hola mundo!\n");
-  printf("Bienvenido/a al lenguaje C");
+  printf("Bienvenido/a al lenguaje C :^)");
 
   return 0;
 }
