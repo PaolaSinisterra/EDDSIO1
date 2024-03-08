@@ -16,6 +16,8 @@ int registrar(){
          cab=(struct nod *)malloc(sizeof(struct nod));
          cout<<"Ingrese el valor del Nodo: ";
          cin>>cab->val;
+         cout<<"Ingrese el nombre del Nodo: ";
+         cin>>cab->val;
          cab->sig=NULL;
          for(aux2=cab; aux2->sig==NULL;);
 
@@ -23,6 +25,8 @@ int registrar(){
     }else{
          aux=(struct nod *)malloc(sizeof(struct nod));
          cout<<"Ingrese el valor del Nodo: ";
+         cin>>aux->val;
+          cout<<"Ingrese el nombre del Nodo: ";
          cin>>aux->val;
          aux->sig=NULL;
          aux2=cab;
@@ -42,6 +46,7 @@ int mostrar(){
     
     for(aux=cab; aux!=NULL; aux=aux->sig){
     cout<<"Valor del Nodo: "<<aux->val<<endl;
+    cout<<"nombre del Nodo: "<<aux->val<<endl;
     }
     return 0;
 }
