@@ -9,6 +9,7 @@ struct pacientes
    
 };
 
+
 pacientes *cabeza, *auxiliar1, *auxiliar2;
     int documento=0;
     string nombre;
