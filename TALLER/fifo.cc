@@ -17,6 +17,7 @@ int registrar(){
          cout<<"Ingrese el valor del Nodo: ";
          cin>>cab->val;
          cab->sig=NULL;
+         for(aux2=cab; aux2->sig==NULL;);
 
 
     }else{
@@ -24,12 +25,13 @@ int registrar(){
          cout<<"Ingrese el valor del Nodo: ";
          cin>>aux->val;
          aux->sig=NULL;
-         aux2==cab;
+         aux2=cab;
          while(aux2->sig!=NULL)
             aux2=aux2->sig;
          aux2->sig=aux;
          aux2=aux=NULL;
          free(aux);
+         free(aux2);
     }
 
 
