@@ -17,7 +17,7 @@ pacientes *cabeza, *auxiliar1, *auxiliar2;
 
 int registro(){
     if(cabeza==NULL){
-        pacientes *cabeza = new pacientes();
+        cabeza=(struct pacientes *)malloc(sizeof(struct pacientes));
         cout<<"Ingrese el nombre del paciente: ";
         cin>>cabeza->nombre;
         cout<<"Ingrese el documento del paciente: ";
