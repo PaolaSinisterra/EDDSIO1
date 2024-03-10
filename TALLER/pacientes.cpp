@@ -60,17 +60,18 @@ string nombre;
 
 
         do{
-            cout<<"MENU"<<endl;
-            cout<<"1. REGISTRAR PACIENTE"<<endl;
-            cout<<"2. VER PACIENTES"<<endl;
-            cout<<"3. SALIR DEL MENU"<<endl;
+            cout<<"<--------------- BIENVENIDO AL MENU ---------------->"<<endl;
+            cout<<"            (SOLO INGRESE LOS NUMEROS)"<<endl;
+            cout<<"              1. REGISTRAR PACIENTE"<<endl;
+            cout<<"                2. VER PACIENTES"<<endl;
+            cout<<"                3. SALIR DEL MENU"<<endl;
             cin>>opcion;
 
             switch(opcion){
                 case 1: registro();break;
                 case 2: mostrar();break;
-                case 3: cout<<"ADIOS";break;
-                default:cout<<"Opcion invalida";break;
+                case 3: cout<<"MUCHAS GRACIAS POR USAR NUESTRO SERVICIO. :)"<<endl;cout<<"QUE TENGA BUEN DIA :)";break;
+                default:cout<<"LA OPCION DIGITADA NO ESTA DENTRO DE LOS LIMITES. :(";break;
             }
             
         }while (opcion!=3);
