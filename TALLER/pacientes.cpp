@@ -54,7 +54,7 @@ int mostrar(){
     }
 
 int main(){
-string nombre;
+
 
         int opcion=0;
 
