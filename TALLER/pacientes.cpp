@@ -71,7 +71,7 @@ int main(){
                 case 1: registro();break;
                 case 2: mostrar();break;
                 case 3: cout<<"MUCHAS GRACIAS POR USAR NUESTRO SERVICIO. :)"<<endl;cout<<"QUE TENGA BUEN DIA :)";break;
-                default:cout<<"LA OPCION DIGITADA NO ESTA DENTRO DE LOS LIMITES. :(";break;
+                default:cout<<"LA OPCION DIGITADA NO ESTA DENTRO DE LOS LIMITES. :("<<endl;break;
             }
             
         }while (opcion!=3);

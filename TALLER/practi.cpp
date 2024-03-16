@@ -1,0 +1,133 @@
+#include <iostream>
+#include <malloc.h>
+
+using namespace std;
+
+struct pacientes {
+  int valor = 0;
+  char nombre[30];
+  pacientes *siguiente;
+};
+
+pacientes *cabeza, *auxiliar1, *auxiliar2;
+
+int registro() {
+  if (cabeza == NULL) {
+    cabeza = (struct pacientes *)malloc(sizeof(struct pacientes));
+    cout << "Ingrese el nombre del paciente: ";
+    cin >> cabeza->nombre;
+    cout << "Ingrese el documento del paciente: ";
+    cin >> cabeza->valor;
+    cabeza->siguiente = NULL;
+  } else {
+    auxiliar1 = (struct pacientes *)malloc(sizeof(struct pacientes));
+    cout << "Ingrese el nombre del paciente: ";
+    cin >> auxiliar1->nombre;
+    cout << "Ingrese el documento del paciente: ";
+    cin >> auxiliar1->valor;
+    auxiliar1->siguiente = NULL;
+    auxiliar2 = cabeza;
+    while (auxiliar2->siguiente != NULL) {
+      auxiliar2 = auxiliar2->siguiente;
+    }
+    auxiliar2->siguiente = auxiliar1;
+    auxiliar2 = auxiliar1 = NULL;
+    free(auxiliar1);
+    free(auxiliar2);
+  }
+  return 0;
+}
+
+int mostrar() {
+  for (auxiliar1 = cabeza; auxiliar1 != NULL; auxiliar1 = auxiliar1->siguiente) {
+    cout << "NOMBRE DEL PACIENTE: " << auxiliar1->nombre << endl;
+    cout << "DOCUMENTO DEL PACIENTE: " << auxiliar1->valor << endl;
+  }
+  return 0;
+}
+
+void eliminar(int valor) {
+  auxiliar1 = cabeza;
+  auxiliar2 = NULL;
+
+  while (auxiliar1 != NULL && auxiliar1->valor != valor) {
+    auxiliar2 = auxiliar1;
+    auxiliar1 = auxiliar1->siguiente;
+  }
+
+  if (auxiliar1 != NULL) {
+    if (auxiliar1 = cabeza) {
+      cabeza = cabeza->siguiente;
+    } else {
+      auxiliar2->siguiente = auxiliar1->siguiente;
+    }
+    free(auxiliar1);
+  } else {
+    cout << "Paciente con el documento " << valor << " no encontrado." << endl;
+  }
+}
+int buscar(int valor) {
+  auxiliar1 = cabeza;
+
+  while (auxiliar1 != NULL && auxiliar1->valor != valor) {
+    auxiliar1 = auxiliar1->siguiente;
+  }
+
+  if (auxiliar1 != NULL) {
+    cout << "Paciente encontrado: " << auxiliar1->nombre << endl;
+    return true;
+  } else {
+    cout << "Paciente no encontrado." << endl;
+    return false;
+  }
+}
+
+int main() {
+  int opcion, valor;
+
+  do {
+    cout << "<--------------- BIENVENIDO AL MENU ---------------->" << endl;
+    cout << "            (SOLO INGRESE LOS NUMEROS)" << endl;
+    cout << "              1. REGISTRAR PACIENTE" << endl;
+    cout << "              2. VER PACIENTES" << endl;
+    cout << "              3. ELIMINAR PACIENTE" << endl;
+    cout << "              4. BUSCAR PACIENTE" << endl;
+    cout << "              5. SALIR DEL MENU" << endl;
+
+    cin >> opcion;
+
+    switch (opcion) {
+      case 1:
+        registro();
+        break;
+      case 2:
+        mostrar();
+        break;
+        case 3:
+        cout << "Ingrese el valor del paciente a eliminar: ";
+        cin >> valor;
+        eliminar(valor);
+        break;
+      case 4:
+        cout << "Ingrese el valor del paciente a buscar: ";
+        cin >> valor;
+        if (buscar(valor)) {
+          // Se ha encontrado el paciente
+        } else {
+          // No se ha encontrado el paciente
+        }
+        break;
+      case 5:
+        cout << "MUCHAS GRACIAS POR USAR NUESTRO SERVICIO. :)" << endl;
+        cout << "QUE TENGA BUEN DIA :)";
+        break;
+      
+      default:
+        cout << "LA OPCION DIGITADA NO ESTA DENTRO DE LOS LIMITES. :("<<endl;break;
+            }
+            
+        }while (opcion!=3);
+        
+            
+        
+    }
