@@ -164,7 +164,7 @@ int calcularPromedioPrecios(){
     cout<<"Precio promedio por unidad: "<<promedio<<endl;
 
     return 0;
-}
+};
 
 int vender(){
     int idVenta, cantidadVenta;
