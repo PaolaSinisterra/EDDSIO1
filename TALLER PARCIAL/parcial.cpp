@@ -166,11 +166,7 @@ int calcularPromedioPrecios(){
     return 0;
 }
 
-int vender
-
-
-
-(){
+int vender(){
     int idVenta, cantidadVenta;
     nodo* produc=a;
     bool encontrar=false;
