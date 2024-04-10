@@ -166,7 +166,11 @@ int calcularPromedioPrecios(){
     return 0;
 }
 
-int vender(){
+int vender
+
+
+
+(){
     int idVenta, cantidadVenta;
     nodo* produc=a;
     bool encontrar=false;
@@ -174,8 +178,7 @@ int vender(){
     cout<<"Ingrese el ID del producto a comprar: ";
     cin>>idVenta;
 
-    cout<<"Ingrese la cantidad que quiere comprar: ";
-    cin>>cantidadVenta;
+    
 
     while (produc!=NULL)
     {
@@ -189,6 +192,9 @@ int vender(){
       cout << "Nombre: " << produc->producto.nombre << endl;
       cout << "Cantidad disponible: " << produc->producto.cantidad << endl;
       cout << "Precio por unidad: " << produc->producto.precio << endl;
+
+      cout<<"Ingrese la cantidad que quiere comprar: ";
+    cin>>cantidadVenta;
 
                 int totalVenta=cantidadVenta*produc->producto.precio;
                 produc->producto.cantidad-=cantidadVenta;;
