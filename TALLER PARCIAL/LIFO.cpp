@@ -36,6 +36,8 @@ void calcular();
 void mostrar(); 
 void retirar();
 
+ int valorRetiro = 0;
+
 
 
 void registrar(){
@@ -111,7 +113,7 @@ void calcular(){
     int totalCarros = 0;
     int totalMotos = 0;
     int valorTotal = 0;
-    int valorRetiros = 0; // Nuevo valor para almacenar el valor total de las retiradas
+    // Nuevo valor para almacenar el valor total de las retiradas
 
     carro *temporalCarro = cab;
     while(temporalCarro != NULL){
@@ -126,7 +128,8 @@ void calcular(){
     }
 
     // Calcular el valor total del parqueadero sumando el valor de los vehículos y las retiradas
-    valorTotal = totalCarros * 1000 + totalMotos * 500 - valorRetiros;
+    valorTotal = totalCarros * 1000 + totalMotos * 500;
+    valorTotal = valorTotal+valorRetiro;
 
     cout << "\nHay un total de " << totalCarros << " carros en el parqueadero.";
     cout << "\nHay un total de " << totalMotos << " motos en el parqueadero.";
@@ -164,7 +167,7 @@ void retirar(){
     int opc;
     int id;
     bool found = false;
-    int valorRetiro = 0;
+   
 
     cout<<"\n\tMENU DE RETIRO\n";
     cout<<"\n\t1. Retirar carro";
@@ -194,6 +197,7 @@ void retirar(){
             }
             anteriorCarro = temporalCarro;
             temporalCarro = temporalCarro->sig;
+            free(anteriorCarro);
         }
 
         if(!found){
@@ -210,6 +214,7 @@ void retirar(){
 
                 if (anteriorMoto == NULL) {
                     cab2 = temporalMoto->sig2;
+
                 } else {
                     anteriorMoto->sig2 = temporalMoto->sig2;
                 }
@@ -219,6 +224,7 @@ void retirar(){
             }
             anteriorMoto = temporalMoto;
             temporalMoto = temporalMoto->sig2;
+            free(anteriorMoto);
         }
 
         if(!found){
