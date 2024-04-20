@@ -12,6 +12,8 @@ using namespace std;
 struct carro{
 
 int cantidad;
+char nomPro [50];
+char apePro[50];
 char placa[50];
 int ID;
 carro *sig;
@@ -23,6 +25,8 @@ carro *cab, *aux;
 struct moto{
 
 int cantidad;	
+char nomPro [50];
+char apePro[50];
 char placa[50];
 int ID;
 moto *sig2;
@@ -56,8 +60,13 @@ void registrar(){
     aux = (struct carro *)malloc(sizeof(struct carro)); 
     cout<<"\nDigite la placa del carro: ";
     cin>>aux->placa;
-    cout<<"Digite el ID del carro: ";
+    cout<<"Digite el ID del carro: "<<endl;
     cin>>aux->ID;
+    cout<<"Digite el nombre del usuario: ";
+    cin>>aux->nomPro;
+    cout<<"Digite el apellido del usuario: ";
+    cin>>aux->apePro;
+
 
 
     if(cab==NULL){
@@ -88,6 +97,10 @@ void registrar(){
     cin>>aux2->placa;
     cout<<"Digite el ID de la moto: ";
     cin>>aux2->ID;
+    cout<<"Digite el nombre del usuario: ";
+    cin>>aux2->nomPro;
+    cout<<"Digite el apellido del usuario: ";
+    cin>>aux2->apePro;
 
 
     if(cab2==NULL){
@@ -146,6 +159,7 @@ void mostrar(){
 
   cout<<"\nPlaca de carro: "<<aux->placa;
   cout<<"\nID de carro: "<<aux->ID;
+  cout<<"Nombre del propietario: "<<aux->nomPro <<aux->apePro;
   aux=aux->sig;
 
   }
@@ -157,6 +171,7 @@ void mostrar(){
 
   cout<<"\nPlaca de moto: "<<aux2->placa;
   cout<<"\nID de moto: "<<aux2->ID<<"\n";
+  cout<<"Nombre del propietario: "<<aux2->nomPro <<aux2->apePro;
   aux2=aux2->sig2;
 
   }
