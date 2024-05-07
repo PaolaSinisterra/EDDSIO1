@@ -1,301 +1,218 @@
-/*
-Tengo un parqueadero de callejón con ocupación para moto y carro. 
-Los cuales se parquean en sistema lifo. Los carros tienen un valor de parqueo de 1000 y las motos de 500, 
-pero al retirarlos cada movimiento adicional de vehículo cuesta 100 para carro y 50 para moto. 
-Calcular el valor delegando en x momento de día
+/**
+ * Tengo un parqueadero de callejon con ocupacion para Motos y Carros.
+ *  Los cuales se parquean en sistema LIFO. Los carros tiene un valor de parqueo
+ *  de 1.000 y motos 500, pero al retirarlos cada movimiento adicional de vehiculos cuesta 100 
+ * para carro  y 50 para moto. Calcular el valor devegando en x momento del dia.
+ * 
 */
-
-#include <iostream>
+#include<iostream>
+#include<malloc.h>
 using namespace std;
-#include <malloc.h> 
 
-struct carro{
+struct vehiculos{
+    char propietario [5];
+    int placa=0;
+    vehiculos *sig;
+    
+}; 
 
-int cantidad;
-char nomPro [50];
-char apePro[50];
-char placa[50];
-int ID;
-carro *sig;
+vehiculos *aux, *top, *aux2, *top2;
+ int Ndecarros=0, Ndemotos=0, Ndevehiculos=0,CM=0,CC=0;
+int registrar(){
+    
+   int  opc=0;
+   cout<<"ingrese el tipo de vehiculo que desea registrar"<<endl<<"1. carro"<<endl<<"2.moto"<<endl; 
+   cin>>opc;
 
-};
-
-carro *cab, *aux;
-
-struct moto{
-
-int cantidad;	
-char nomPro [50];
-char apePro[50];
-char placa[50];
-int ID;
-moto *sig2;
-
-};
-
-moto *cab2, *aux2;
-
-void registrar();
-void calcular();
-void mostrar(); 
-void retirar();
-
- int valorRetiro = 0;
+if(opc==1){
+     aux = (struct vehiculos *) malloc(sizeof(struct vehiculos));
+    cout<<"ingrese la placa del vehiculo"<<endl;
+    cin>>aux->placa;
+    cout<<"ingrese la iniciales del propietario"<<endl; 
+    cin>>aux->propietario;
 
 
+      if(top==NULL){
+        top = aux;
+        top->sig = NULL;
+    } else {
+        aux->sig = top;
+        top = aux;
+       
+    }
+     Ndecarros++;
+    aux = NULL;
+    free(aux);
+    
 
-void registrar(){
+}
 
-    int opc;
+if(opc==2){
+    aux2 = (struct vehiculos *) malloc(sizeof(struct vehiculos));
+    cout<<"ingrese la placa del vehiculo"<<endl;
+    cin>>aux2->placa;
+    cout<<"ingrese la iniciales del propietario"<<endl; 
+    cin>>aux2->propietario;
 
-    cout<<"\n\tMENU\n";
-    cout<<"\t\n1. Carro";
-    cout<<"\t\n2. Moto\n";
-    cout<<"\nDigite el tipo de vehiculo que desea registrar:";
+    if(top2==NULL){
+        top2=aux2;
+        top2->sig=NULL; 
+    }else{
+        aux2->sig=top2;
+        top2=aux2;
+    }
+    Ndemotos++;
+
+
+}
+
+ Ndevehiculos=Ndecarros+Ndemotos;
+    cout<<"el numero de vehiculos es"<<Ndevehiculos<<endl; 
+ return 0;   
+}
+
+int mostrar(){
+    cout<<" ***VEHICULOS PARQUEADOS*** "<<endl;
+    aux=top;
+    cout<<"CARROS"<<endl;
+    while(aux!=NULL){
+       
+        cout<<aux->placa<<endl;
+        aux=aux->sig;
+
+
+    }
+
+    aux2=top2;
+    cout<<"MOTOS"<<endl;
+    while(aux2!=NULL){
+       
+        cout<<aux2->placa<<endl;
+        aux2=aux2->sig;
+
+
+    }
+
+return 0;
+}
+
+int eliminar(){
+    int opc=0;
+    cout<<"ingrese el tipo d vehiculo que desea retirar"<<endl;
+    cout<<"1. CARROS"<<"2. MOTOS"<<endl;
     cin>>opc;
-
 
     if(opc==1){
+        int placaEliminar=0;
+        cout<<"ingrese la placa del carro que desea retirar"<<endl;
+        cin>>placaEliminar;
 
-    aux = (struct carro *)malloc(sizeof(struct carro)); 
-    cout<<"\nDigite la placa del carro: ";
-    cin>>aux->placa;
-    cout<<"Digite el ID del carro: "<<endl;
-    cin>>aux->ID;
-    cout<<"Digite el nombre del usuario: ";
-    cin>>aux->nomPro;
-    cout<<"Digite el apellido del usuario: ";
-    cin>>aux->apePro;
+        vehiculos *anterior = NULL;
+        aux = top;
+        while(aux != NULL && aux->placa != placaEliminar){
+            anterior = aux;
+            aux = aux->sig;
+            //contador para carros 
+            CC++;
 
-
-
-    if(cab==NULL){
-
-      aux->cantidad=1;
-      cab=aux;
-      cab->sig=NULL;
+        }
+        cout<<"se movieron"<<CC<<endl;
+        if(aux == NULL){
+            cout << "No se encontró ningún carro con esa placa." << endl;
+            return 0;
+        }
+        if(anterior == NULL){
+            top = aux->sig;
+        } else {
+            anterior->sig = aux->sig;
+        }
+        free(aux);
+        cout << "El carro con placa " << placaEliminar << " ha sido retirado correctamente." << endl;  
+       
     }
 
-    else{
-
-      aux->cantidad=aux->cantidad+1;
-      aux->sig=cab;
-      cab=aux;
-    }
-
-    aux=NULL;
-    free(aux);
-
-    }
-
-
+    
     if(opc==2){
+         int placaEliminar=0;
+        cout<<"ingrese la placa de la moto que desea retirar"<<endl;
+        cin>>placaEliminar;
 
-  aux2 = (struct moto *)malloc(sizeof(struct moto)); 	
-
-  cout<<"\nDigite la placa de la moto: ";
-    cin>>aux2->placa;
-    cout<<"Digite el ID de la moto: ";
-    cin>>aux2->ID;
-    cout<<"Digite el nombre del usuario: ";
-    cin>>aux2->nomPro;
-    cout<<"Digite el apellido del usuario: ";
-    cin>>aux2->apePro;
-
-
-    if(cab2==NULL){
-
-      cab2=aux2;
-      cab2->sig2=NULL;
+        vehiculos *anterior = NULL;
+        aux = top;
+        while(aux != NULL && aux->placa != placaEliminar){
+            anterior = aux;
+            aux = aux->sig;
+            CM++; //contador para motos
+        }
+         cout<<"se movieron"<<CC<<endl;
+        if(aux == NULL){
+            cout << "No se encontró ningúna moto con esa placa." << endl;
+            return 0;
+        }
+        
+        if(anterior == NULL){
+            top = aux->sig;
+        } else {
+            anterior->sig = aux->sig;
+        }
+        free(aux);
+        cout << "La moto con la placa " << placaEliminar << " ha sido retirado correctamente." << endl;  
+       
     }
+    return 0; 
 
-    else{
-
-      aux2->sig2=cab2;
-      cab2=aux2;
-    }
-
-    aux2=NULL;
-    free(aux2);
-    }
 
 
 }
+int calcular(){
+//calculemos el numero de vehiculos 
 
-void calcular(){
-    int totalCarros = 0;
-    int totalMotos = 0;
-    int valorTotal = 0;
-    // Nuevo valor para almacenar el valor total de las retiradas
+int totalc=0,totalm=0, totalv=0;
 
-    carro *temporalCarro = cab;
-    while(temporalCarro != NULL){
-        totalCarros++;
-        temporalCarro = temporalCarro->sig;
-    }
+totalc= (Ndecarros*1000)+(CC*100);
+totalm=(Ndemotos*500)+(CM*50);
+//total de solo parquear motos y carros
+totalv= totalc+totalm;
 
-    moto *temporalMoto = cab2;
-    while(temporalMoto != NULL){
-        totalMotos++;
-        temporalMoto = temporalMoto->sig2;
-    }
 
-    // Calcular el valor total del parqueadero sumando el valor de los vehículos y las retiradas
-    valorTotal = totalCarros * 1000 + totalMotos * 500;
-    valorTotal = valorTotal+valorRetiro;
 
-    cout << "\nHay un total de " << totalCarros << " carros en el parqueadero.";
-    cout << "\nHay un total de " << totalMotos << " motos en el parqueadero.";
-    cout << "\nEl valor total del parqueadero en este momento, incluyendo las retiradas, es: " << valorTotal << " pesos." << endl;
+
+cout<<"--DINERO RECIBIDO EN EL PARQUEADERO--"<<endl;
+cout<<"CARROS: $"<<totalc<<endl;
+cout<<"MOTOS: $"<<totalm<<endl; 
+cout<<"TOTAL: $"<<totalv<<endl; 
+
+return 0;
 
 }
 
-void mostrar(){
-
-  cout<<"\nMostrando los carros que hay en el parquadero:\n";
-
-  aux=cab;
-  while(aux!=NULL){
-
-  cout<<"\nPlaca de carro: "<<aux->placa;
-  cout<<"\nID de carro: "<<aux->ID;
-  cout<<"Nombre del propietario: "<<aux->nomPro <<aux->apePro;
-  aux=aux->sig;
-
-  }
-
-  cout<<"\n\nMostrando las motos que hay en el parquadero:\n";
-
-  aux2=cab2;
-  while(aux2!=NULL){
-
-  cout<<"\nPlaca de moto: "<<aux2->placa;
-  cout<<"\nID de moto: "<<aux2->ID<<"\n";
-  cout<<"Nombre del propietario: "<<aux2->nomPro <<aux2->apePro;
-  aux2=aux2->sig2;
-
-  }
-}
 
 
-void retirar(){
-    int opc;
-    int id;
-    bool found = false;
-   
-
-    cout<<"\n\tMENU DE RETIRO\n";
-    cout<<"\n\t1. Retirar carro";
-    cout<<"\n\t2. Retirar moto\n";
-    cout<<"\nDigite el tipo de vehiculo que desea retirar: ";
-    cin>>opc;
-
-    cout<<"\nDigite el ID del vehículo que desea retirar: ";
-    cin>>id;
-
-    if(opc == 1) {
-        carro *temporalCarro = cab;
-        carro *anteriorCarro = NULL;
-        while(temporalCarro != NULL){
-            if(temporalCarro->ID == id){
-                cout << "\nSe ha encontrado el carro con ID " << id << ". Retirando carro..." << endl;
-                found = true;
-
-                if (anteriorCarro == NULL) {
-                    cab = temporalCarro->sig;
-                } else {
-                    anteriorCarro->sig = temporalCarro->sig;
-                }
-
-                valorRetiro = 100; // Costo de retirar un carro
-                break; // Found the carro, no need to continue searching
-            }
-            anteriorCarro = temporalCarro;
-            temporalCarro = temporalCarro->sig;
-            free(anteriorCarro);
-        }
-
-        if(!found){
-            cout << "\nNo se encontró ningún carro con el ID proporcionado." << endl;
-        }
-
-    } else if(opc == 2) {
-        moto *temporalMoto = cab2;
-        moto *anteriorMoto = NULL;
-        while(temporalMoto != NULL){
-            if(temporalMoto->ID == id){
-                cout << "\nSe ha encontrado la moto con ID " << id << ". Retirando moto..." << endl;
-                found = true;
-
-                if (anteriorMoto == NULL) {
-                    cab2 = temporalMoto->sig2;
-
-                } else {
-                    anteriorMoto->sig2 = temporalMoto->sig2;
-                }
-
-                valorRetiro = 50; // Costo de retirar una moto
-                break; // Found the moto, no need to continue searching
-            }
-            anteriorMoto = temporalMoto;
-            temporalMoto = temporalMoto->sig2;
-            free(anteriorMoto);
-        }
-
-        if(!found){
-            cout << "\nNo se encontró ninguna moto con el ID proporcionado." << endl;
-        }
-
-    } else {
-        cout << "\nOpción inválida. Por favor seleccione una opción válida (1 o 2)." << endl;
-    }
-
-    // Mostrar el valor a pagar por el retiro
-    cout << "El valor a pagar por el retiro es: " << valorRetiro << " pesos." << endl;
-}
 
 int main(){
+    
+    int opc=0;
+    do{
+        cout<<endl<<"BIENVENIDOS AL PARQUEADERO LA ESTRELLA"<<endl;
+        cout<<"selecione la accion que decea realizar"<<endl;
+        cout<<"1. parquear vehiculo"<<endl;
+        cout<<"2. mostrar vehiculos parqueados"<<endl;
+        cout<<"3. sacar un vehiculo del parqueadero"<<endl; 
+        cout<<"4. dinero del parqueadero"<<endl;
+        cout<<"5. salir de programa"<<endl;
+        cin>>opc;
+        switch (opc){
+            case 1: registrar(); break;
+            case 2: mostrar(); break;
+            case 3: eliminar(); break;
+            case 4: calcular();break;
+            case 5:
+              cout<<"hasta luego... espero que vuelvas";
+        }
+    } while(opc!=5);
 
-  int opc=0;
-
-  do{
-
-  cout<<"\n\tMENU\n";
-
-  cout<<"\n\t1. Registrar\n";
-  cout<<"\t2. Calcular\n";
-  cout<<"\t3. Mostrar\n";
-  cout<<"\t4. Retirar\n";
-  cout<<"\t5. Salir\n";
-  cout<<"\nDigite la opcion que desea realizar: ";
-  cin>>opc;
-
-  switch(opc){
-
-  case 1: 
-    registrar(); break;
-
-  case 2: 
-    calcular(); break;
-
-  case 3: 
-    mostrar(); break;	
-
-  case 4: 
-    retirar(); break;
-  case 5:
-    cout<<"\nGracias por usar nuestro programa... Saliendo\n";	
-      cout<<"...finalized...";
-      break;
-
-  default:
-
-    cout<<"\nLa opcion que digitaste no se encuentra disponible, por favor digite la opcion nuevamente: \n";
-    break;
-  }
-
-  }while(opc!=5);
+    return 0;
 
 
-  return 0;
+
 }
