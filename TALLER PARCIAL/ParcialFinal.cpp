@@ -478,3 +478,8 @@ int main() {
     } while (opc != 7);
 return 0;
 }
+
+/* INTEGRANTES
+PAOLA ANDREA SINISTERRA MOSQUERA
+HELEN FARINA RENTERIA RENTERIA
+*/
