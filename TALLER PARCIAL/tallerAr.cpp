@@ -16,9 +16,8 @@ struct nodo{
     int DD; 
     nodo *izq;
     nodo *der;
-    char gen[30];
-};
 
+};
 nodo *raiz=NULL, *aux=NULL, *aux2=NULL,*raiz2=NULL, *aux5=NULL, *nuevoNodoC=NULL, *nuevoNodoF=NULL;
 
 int posicionarC(){
@@ -117,7 +116,6 @@ int registrarC(){
     int codigoIngresado;
     string nombreIngresado;
     string apellidoIngresado;
-    string genero;
     int AAIngresado=0, MMIngresado=0, DDIngresado=0; 
     
     cout<<" ingrese su codigo: "<<endl;
@@ -127,12 +125,9 @@ int registrarC(){
     getline(cin, nombreIngresado);
     cout<<" ingrese su apellido: "<<endl;
     getline(cin, apellidoIngresado);
-    cout<<"Como se identifica (1. MUJER 2. HOMBRE 3. NO RESPONDE):"<<endl;
-    getline(cin, genero);
     cout<<" ingrese su fecha de nacimiento "<<endl;
     cout<<" AA: "<<endl;
     cin>>AAIngresado;
-    cout<<"Digite la opcion: ";
     cout<<" MES: "<<endl;
     cin>>MMIngresado;
     cout<<" DIA: "<<endl;
@@ -148,11 +143,7 @@ int registrarC(){
    nuevoNodoF->MM = MMIngresado;
    nuevoNodoF->DD = DDIngresado;
    nuevoNodoF->codigo = codigoIngresado;
-   nuevoNodoF->gen=genero;
-   strcpy( nuevoNodoF->nombre, nombreIngresado.c_str());
-   strcpy(nuevoNodoF->apellido, apellidoIngresado.c_str()); 
-   strcpy(nuevoNodoF->gen, genero.c_str());
-  
+
    nuevoNodoF->izq = nuevoNodoF->der = NULL; 
 
     // organizar por fecha 
@@ -580,4 +571,5 @@ int main(){
 
     }while(opc!=4);
    return 0; 
+
 }

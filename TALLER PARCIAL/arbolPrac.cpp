@@ -295,7 +295,7 @@ void eliminarNodo(Nodo *nodoEliminar){
           reemplazar(nodoEliminar, nodoEliminar->izq);
           destruirNodo(nodoEliminar);
     }
-    else if(nodoEliminar->der){
+    else if(nodoEliminar->der){//si tiene hijo derecho
         reemplazar(nodoEliminar, nodoEliminar->der);
         destruirNodo(nodoEliminar);
     }
